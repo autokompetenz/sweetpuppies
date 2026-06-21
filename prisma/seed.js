@@ -8,8 +8,6 @@ function d(day, month, year = 2026) {
 async function main() {
   console.log('🌱 Seeding Sweet Puppies...');
 
-
-
   const labrador = [
     { name:'Simba',   birthDate:d(4,6),  sex:'Male',   father:'Duke',  mother:'Maya',   pedigree:'LOSH-LAB-2026-0412', microchip:'985 1410 0245 101', desc:'Robuste et gourmand, déjà très attaché à sa mère et ses frères de portée.' },
     { name:'Nala',    birthDate:d(10,6), sex:'Female', father:'Duke',  mother:'Maya',   pedigree:'LOSH-LAB-2026-0413', microchip:'985 1410 0245 102', desc:'Douce et patiente, elle observe beaucoup avant de se lancer dans le jeu.' },
@@ -150,7 +148,6 @@ async function main() {
       },
     });
   }
-
 
   console.log(`✅ ${seeds.length} chiots créés`);
   console.log('🎉 Seeding terminé !');
