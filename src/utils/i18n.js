@@ -7,7 +7,7 @@ export const LANGUAGES = [
 export const translations = {
   nav_puppies:      { fr:'Nos chiots',        nl:'Onze puppy\'s',     en:'Our puppies' },
   nav_kennel:       { fr:'Notre élevage',     nl:'Onze fokkerij',     en:'Our kennel' },
-  nav_budget:       { fr:'Budget',            nl:'Budget',            en:'Budget' },
+
   nav_track:        { fr:'Suivi réservation', nl:'Reservering volgen',en:'Track reservation' },
   nav_login:        { fr:'Espace éleveur',    nl:'Fokker inloggen',   en:'Breeder login' },
   hero_badge:       { fr:'Élevage familial à Bastogne', nl:'Familiale fokkerij in Bastogne', en:'Family kennel in Bastogne' },
@@ -111,13 +111,7 @@ export const translations = {
   cookies_label:    { fr:'Cookies',           nl:'Cookies',           en:'Cookies' },
   copyright:        { fr:'Tous droits réservés', nl:'Alle rechten voorbehouden', en:'All rights reserved' },
   made_in:          { fr:'Élevé avec ❤️ à Bastogne', nl:'Met ❤️ gefokt in Bastogne', en:'Raised with ❤️ in Bastogne' },
-  budget_title:     { fr:'Simulateur de budget', nl:'Budgetcalculator', en:'Budget simulator' },
-  budget_sub:       { fr:'Entrez votre budget pour voir les chiots à votre portée.', nl:'Voer uw budget in om de puppy\'s te zien binnen uw bereik.', en:'Enter your budget to see puppies within your reach.' },
-  budget_puppy:     { fr:'Budget pour le chiot (€)', nl:'Budget voor de puppy (€)', en:'Puppy budget (€)' },
-  include_accessories: { fr:'Inclure les accessoires de démarrage', nl:'Inclusief startaccessoires', en:'Include starter accessories' },
-  accessories_detail:{ fr:'Panier, laisse, collier, gamelles, jouets', nl:'Mand, riem, halsband, voerbakken, speeltjes', en:'Basket, leash, collar, bowls, toys' },
-  vet_cost_detail:  { fr:'Frais vétérinaires première année', nl:'Dierenartskosten eerste jaar', en:'First year vet costs' },
-  effective_budget: { fr:'Budget effectif',   nl:'Effectief budget',  en:'Effective budget' },
+
   waitlist_title:   { fr:'Liste d\'attente',  nl:'Wachtlijst',        en:'Waitlist' },
   waitlist_sub:     { fr:'Cette race n\'est pas disponible actuellement ? Inscrivez-vous pour être notifié(e).', nl:'Dit ras is momenteel niet beschikbaar? Meld u aan om een melding te ontvangen.', en:'This breed is not currently available? Sign up to be notified.' },
   waitlist_success: { fr:'Inscrit(e) avec succès ! Nous vous tiendrons informé(e).', nl:'Succesvol aangemeld! We houden u op de hoogte.', en:'Successfully registered! We\'ll keep you informed.' },

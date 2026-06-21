@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useBreakpoint } from '../hooks';
 
 function pathMatchesNav(pathname) {
-  if (/^\/budget\/?$/.test(pathname)) return true;
+
   if (/^\/track/.test(pathname)) return true;
   if (/^\/catalog/.test(pathname)) return true;
   return false;
@@ -23,7 +23,7 @@ export default function ClientBottomNav() {
 
   const items = [
     { to: '/catalog', label: 'Chiots', icon: '🐶', match: (p) => p.startsWith('/catalog') },
-    { to: '/budget', label: 'Budget', icon: '💰', match: (p) => p === '/budget' },
+
     { to: '/track', label: 'Suivi', icon: '📍', match: (p) => p === '/track' },
   ];
 

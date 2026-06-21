@@ -41,10 +41,6 @@ export const adminAPI = {
   waitlist:        ()     => api.get('/admin/waitlist'),
 };
 
-export const simAPI = {
-  simulate: (budget, accessories) => api.get('/budget-simulator', { params: { budget, includeAccessories: accessories } }),
-};
-
 export const waitlistAPI = {
   join: (d) => api.post('/waitlist', d),
 };

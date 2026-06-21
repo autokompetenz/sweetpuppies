@@ -114,7 +114,7 @@ export default function Navbar() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 28, position: 'relative', zIndex: 1 }}>
             <NavLink to="/catalog"     label={t('nav_puppies', lang)} />
             <NavLink to="/catalog"     label={t('nav_kennel', lang)} />
-            <NavLink to="/budget"      label={t('nav_budget', lang)} />
+
             <NavLink to="/track"       label={t('nav_track', lang)} />
           </div>
         )}
@@ -180,7 +180,7 @@ export default function Navbar() {
                     <div style={{ marginBottom: 20 }}>
                       {[
                         { to: '/catalog', icon: '🐶', label: t('nav_puppies', lang) },
-                        { to: '/budget',  icon: '💰', label: t('nav_budget', lang) },
+
                         { to: '/track',   icon: '📍', label: t('nav_track', lang) },
                       ].map(({ to, icon, label }) => (
                         <Link key={to} to={to} onClick={() => setMenuOpen(false)}
@@ -198,38 +198,7 @@ export default function Navbar() {
                     </div>
                   )}
 
-                  {isAuthenticated && (
-                    <div style={{
-                      padding: isMobile ? '0 0 16px' : '14px 18px',
-                      borderBottom: `1px solid ${menuBorder}`,
-                      background: isMobile ? 'transparent' : (isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)'),
-                    }}>
-                      <p style={{ fontSize: isMobile ? 17 : 14, fontWeight: 700, color: menuText, fontFamily: F }}>
-                        Administrateur
-                      </p>
-                      <p style={{ fontSize: isMobile ? 13 : 12, color: menuText3 }}>admin@sweetpuppies.be</p>
-                    </div>
-                  )}
 
-                  <div style={{ padding: isMobile ? '16px 0' : '6px 0' }}>
-                    {isAuthenticated ? (
-                      <Link to="/admin" onClick={() => setMenuOpen(false)}
-                        style={{ ...itemStyle(isMobile), display: 'flex', color: 'var(--primary)' }}
-                        onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(201,118,46,0.06)'; }}
-                        onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                        <span style={{ fontSize: isMobile ? 20 : 16, width: isMobile ? 28 : 20, textAlign: 'center' }}>⚙</span>
-                        Administration
-                      </Link>
-                    ) : (
-                      <Link to="/admin" onClick={() => setMenuOpen(false)}
-                        style={{ ...itemStyle(isMobile), display: 'flex', color: menuText2 }}
-                        onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = menuHover; }}
-                        onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                        <span style={{ fontSize: isMobile ? 20 : 16, width: isMobile ? 28 : 20, textAlign: 'center' }}>→</span>
-                        {t('nav_login', lang)}
-                      </Link>
-                    )}
-                  </div>
 
                   <div style={{ height: 1, background: menuBorder, margin: isMobile ? '8px 0' : 0 }} />
 

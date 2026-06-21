@@ -4,13 +4,15 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useThemeStore, useLangStore } from './store';
 import Toast from './components/Toast';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import ClientBottomNav from './components/ClientBottomNav';
 
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import PuppyDetails from './pages/PuppyDetails';
 import Track from './pages/Track';
-import BudgetSimulator from './pages/BudgetSimulator';
+
+
 import Legal from './pages/Legal';
 
 import AdminLogin from './pages/admin/AdminLogin';
@@ -34,6 +36,7 @@ function PublicLayout({ children }) {
     <>
       <Navbar />
       {children}
+      <Footer />
       <ClientBottomNav />
       <Toast />
     </>
@@ -61,7 +64,8 @@ export default function App() {
         <Route path="/puppy/:slug" element={<PublicRoute element={<PuppyDetails />} />} />
         <Route path="/track" element={<PublicRoute element={<Track />} />} />
         <Route path="/track/:number" element={<PublicRoute element={<Track />} />} />
-        <Route path="/budget" element={<PublicRoute element={<BudgetSimulator />} />} />
+
+
         <Route path="/legal" element={<PublicRoute element={<Legal />} />} />
 
         <Route path="/admin/login" element={<AdminLogin />} />

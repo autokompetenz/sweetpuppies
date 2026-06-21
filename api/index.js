@@ -704,40 +704,6 @@ app.get('/api/admin/clients', authenticateAdmin, async (req, res) => {
   }
 });
 
-// ─── Budget Simulator ──────────────────────────────────────────────────────
-app.get('/api/budget-simulator', async (req, res) => {
-  try {
-    const { budget, includeAccessories } = req.query;
-    if (!budget || budget <= 0) {
-      return res.status(400).json({ error: 'Budget invalide' });
-    }
-    const b = parseFloat(budget);
-    const accessoriesCost = includeAccessories === 'true' ? 300 : 0;
-    const vetFirstYear = 200;
-    const effectiveBudget = b - accessoriesCost - vetFirstYear;
-
-    const puppies = await prisma.puppy.findMany({
-      where: { isActive: true, status: 'available', price: { lte: effectiveBudget } },
-      orderBy: { price: 'desc' },
-    });
-
-    res.json({
-      count: puppies.length,
-      budget: b,
-      accessoriesCost,
-      vetFirstYear,
-      effectiveBudget,
-      puppies,
-      breakdown: {
-        accessories: accessoriesCost > 0 ? `~€${accessoriesCost} (panier, laisse, gamelles, jouets)` : null,
-        vet: `~€${vetFirstYear} (vaccins, vermifuge, visite de contrôle)`,
-      },
-    });
-  } catch (e) {
-    res.status(500).json({ error: 'Erreur serveur' });
-  }
-});
-
 // ─── Waitlist (admin) ──────────────────────────────────────────────────────
 app.get('/api/admin/waitlist', authenticateAdmin, async (req, res) => {
   try {
