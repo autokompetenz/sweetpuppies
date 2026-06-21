@@ -78,12 +78,6 @@ export default function PuppyCard({ puppy, index = 0 }) {
           {puppy.breed} · {puppy.sex === 'Male' ? t('male', l) : t('female', l)} · {getAgeString(puppy.birthDate, l)}
         </p>
 
-        <div style={{ display: 'flex', gap: 14, marginBottom: 16, paddingBottom: 16, borderBottom: '1px solid var(--border)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, color: 'var(--text-3)' }}>
-            <span style={{ color: 'var(--primary)' }}>📏</span> {puppy.weightCurrent || '?'} kg
-          </div>
-        </div>
-
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 10 }}>
           <div>
             <div style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 900, fontSize: 26, color: 'var(--text)', letterSpacing: '-0.02em', lineHeight: 1 }}>
