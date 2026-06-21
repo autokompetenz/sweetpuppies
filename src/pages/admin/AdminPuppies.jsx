@@ -125,15 +125,15 @@ export default function AdminPuppies() {
                     </td>
                     <td style={{ padding: '14px 20px' }}>
                       <div style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}>
-                        <Link to={`/admin/puppies/${puppy.id}/edit`} style={{ fontSize: 13, color: 'var(--primary)', textDecoration: 'none', fontWeight: 800 }}>
+                        <Link to={`/admin/puppies/${puppy.id}/edit`} className="admin-table-btn" style={{ fontSize: 13, color: 'var(--primary)', textDecoration: 'none', fontWeight: 800 }}>
                           Modifier
                         </Link>
                         <button type="button" onClick={() => handleToggle(puppy)}
-                          style={{ fontSize: 13, color: puppy.isActive ? '#DC2626' : 'var(--green)', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", fontWeight: 700 }}>
+                          className="admin-table-btn" style={{ fontSize: 13, color: puppy.isActive ? '#DC2626' : '#22C55E', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", fontWeight: 700 }}>
                           {puppy.isActive ? 'Désactiver' : 'Activer'}
                         </button>
                         <button type="button" onClick={() => handleDelete(puppy)}
-                          style={{ fontSize: 13, color: '#991B1B', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", fontWeight: 800 }}>
+                          className="admin-table-btn-danger" style={{ fontSize: 13, color: '#991B1B', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", fontWeight: 800 }}>
                           Supprimer
                         </button>
                       </div>

@@ -85,6 +85,7 @@ export default function PuppyCard({ puppy, index = 0 }) {
             </div>
           </div>
           <Link to={`/puppy/${puppy.slug || puppy.id}`}
+            className="admin-reserve-btn"
             style={{
               padding: '10px 16px', borderRadius: 6, fontSize: 11, fontWeight: 800,
               letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer',

@@ -2,6 +2,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { adminAPI } from '../../services/api';
 import { useToastStore } from '../../store';
+import { useBreakpoint } from '../../hooks';
 import { formatEuro, formatDate, timeAgo } from '../../utils/helpers';
 import { Loader } from '../../components/UI';
 
@@ -10,6 +11,7 @@ const STATUS_LABELS = { pending:'En attente', deposit_confirmed:'Acompte confirm
 export default function AdminReservationDetail() {
   const { id } = useParams();
   const { addToast } = useToastStore();
+  const { isMobile } = useBreakpoint();
   const [reservation, setReservation] = useState(null);
   const [loading, setLoading] = useState(true);
   const [newStatus, setNewStatus] = useState('');
@@ -75,7 +77,7 @@ export default function AdminReservationDetail() {
         <div style={{ display:'flex', flexDirection:'column', gap:18 }}>
           <div style={cardStyle}>
             <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.22em', textTransform:'uppercase', color:'var(--primary)', marginBottom:18 }}>Informations client</p>
-            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
+            <div className={isMobile ? 'admin-grid-2' : ''} style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
               <InfoRow label="Nom" value={reservation.guestName} />
               <InfoRow label="Email" value={reservation.guestEmail} />
               <InfoRow label="Téléphone" value={reservation.guestPhone} />
@@ -106,7 +108,7 @@ export default function AdminReservationDetail() {
                 </div>
                 <p style={{ fontFamily:"'Outfit',sans-serif", fontWeight:800, fontSize:20, color:'var(--primary)', flexShrink:0 }}>{formatEuro(reservation.puppy.price)}</p>
               </div>
-              <div style={{ display:'flex', gap:24, marginTop:16, paddingTop:16, borderTop:'1px solid var(--border)' }}>
+              <div className={isMobile ? 'admin-flex-wrap' : ''} style={{ display:'flex', gap:24, marginTop:16, paddingTop:16, borderTop:'1px solid var(--border)' }}>
                 {reservation.discountAmount > 0 && <div><p style={{ fontSize:11, color:'var(--text-3)' }}>{'Réduction'}</p><p style={{ fontWeight:700, color:'#22C55E', fontSize:16 }}>-{formatEuro(reservation.discountAmount)}</p></div>}
                 <div><p style={{ fontSize:11, color:'var(--text-3)' }}>{'Acompte'}</p><p style={{ fontWeight:700, color:'var(--text)', fontSize:16 }}>{formatEuro(reservation.depositAmount || 0)}</p></div>
                 {reservation.balanceAmount > 0 && <div><p style={{ fontSize:11, color:'var(--text-3)' }}>{'Solde'}</p><p style={{ fontWeight:700, color:'var(--text)', fontSize:16 }}>{formatEuro(reservation.balanceAmount)}</p></div>}

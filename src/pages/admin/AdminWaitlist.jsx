@@ -67,7 +67,7 @@ export default function AdminWaitlist() {
                     <td style={{ padding: '14px 20px', color: 'var(--text-3)', fontSize: 13 }}>{formatDate(entry.createdAt)}</td>
                     <td style={{ padding: '14px 20px' }}>
                       <button type="button" onClick={() => handleDelete(entry)}
-                        style={{ fontSize: 13, color: '#991B1B', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", fontWeight: 800 }}>
+                        className="admin-table-btn-danger" style={{ fontSize: 13, color: '#991B1B', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Outfit',sans-serif", fontWeight: 800 }}>
                         Supprimer
                       </button>
                     </td>

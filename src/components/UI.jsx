@@ -12,7 +12,7 @@ export function Loader({ size = 'md', text }) {
 
 export function PageHeader({ title, subtitle, children }) {
   return (
-    <div style={{ position:'relative', paddingTop:120, paddingBottom:60, paddingLeft:'6%', paddingRight:'6%', background:'var(--bg-card2)', borderBottom:'1px solid var(--border)', overflow:'hidden' }}>
+    <div style={{ position:'relative', paddingTop:'clamp(80px,12vw,120px)', paddingBottom:60, paddingLeft:'6%', paddingRight:'6%', background:'var(--bg-card2)', borderBottom:'1px solid var(--border)', overflow:'hidden' }}>
       <div style={{ position:'absolute', top:0, left:0, right:0, bottom:0, background:'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(201,118,46,0.05) 0%, transparent 70%)' }} />
       <motion.div initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6, ease:[0.16,1,0.3,1] }} style={{ position:'relative', zIndex:1 }}>
         <h1 style={{ fontFamily:"'Outfit',sans-serif", fontWeight:900, fontSize:'clamp(36px,5vw,76px)', color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1, marginBottom:14 }}>

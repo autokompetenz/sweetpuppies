@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { adminAPI } from '../../services/api';
 import { useToastStore } from '../../store';
+import { useBreakpoint } from '../../hooks';
 import { BREEDS } from '../../utils/helpers';
 
 const EMPTY = {
@@ -44,6 +45,7 @@ export default function AdminPuppyForm() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToast } = useToastStore();
+  const { isMobile } = useBreakpoint();
   const isEdit = !!id && id !== 'new';
   const [form, setForm] = useState(EMPTY);
   const [saving, setSaving] = useState(false);
@@ -122,7 +124,7 @@ export default function AdminPuppyForm() {
 
       <form onSubmit={handleSubmit} style={{ maxWidth: 780 }}>
         <Section title="Informations principales">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16, marginBottom:16 }}>
+          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:16, marginBottom:16 }}>
             <Field label="Nom *" field="name" placeholder="Luna" value={form.name} onChange={set("name")} />
             <Field label="Race *" field="breed" opts={BREEDS} value={form.breed} onChange={set("breed")} />
             <Field label="Sexe" field="sex" opts={['Male','Female']} value={form.sex} onChange={set("sex")} />
@@ -133,14 +135,14 @@ export default function AdminPuppyForm() {
         </Section>
 
         <Section title="Parents">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
+          <div className={isMobile ? 'admin-grid-2' : ''} style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
             <Field label="Nom de la mère" field="parentMotherName" placeholder="Bella" value={form.parentMotherName} onChange={set("parentMotherName")} />
             <Field label="Nom du père" field="parentFatherName" placeholder="Max" value={form.parentFatherName} onChange={set("parentFatherName")} />
           </div>
         </Section>
 
         <Section title="Santé">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
+          <div className={isMobile ? 'admin-grid-2' : ''} style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
             <Field label="Pedigree" field="pedigreeDocUrl" placeholder="LOSH XXXX" value={form.pedigreeDocUrl} onChange={set("pedigreeDocUrl")} />
             <Field label="Puce électronique" field="microchipNumber" placeholder="528140000000000" value={form.microchipNumber} onChange={set("microchipNumber")} />
             <Field label="Statut vaccination" field="vaccinationStatus" placeholder="À jour" value={form.vaccinationStatus} onChange={set("vaccinationStatus")} />
@@ -161,12 +163,12 @@ export default function AdminPuppyForm() {
         {(previews.length > 0 || existingImages.length > 0) && (
           <div style={{ marginBottom:24 }}>
             <p style={{ fontSize:11, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:12 }}>Aperçu ({previews.length + existingImages.length})</p>
-            <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:8 }}>
+            <div className={isMobile ? 'admin-img-grid' : ''} style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:8 }}>
               {[...existingImages, ...previews].map((img, index) => (
                 <div key={img.id} style={{ position:'relative', borderRadius:12, overflow:'hidden', aspectRatio:'4/3' }}>
                   <img src={img.url} alt={`Aperçu ${index + 1}`} style={{ width:'100%', height:'100%', objectFit:'cover', border:'1px solid var(--border)' }} />
                   <button type="button" onClick={() => removeImage(img.id)}
-                    style={{ position:'absolute', top:4, right:4, background:'rgba(0,0,0,0.8)', color:'#fff', border:'none', borderRadius:'50%', width:24, height:24, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize:10 }}>
+                    style={{ position:'absolute', top:4, right:4, background:'rgba(0,0,0,0.8)', color:'#fff', border:'none', borderRadius:'50%', width: isMobile ? 32 : 24, height: isMobile ? 32 : 24, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize: isMobile ? 12 : 10 }}>
                     ✕
                   </button>
                   {index === 0 && <span style={{ position:'absolute', bottom:4, left:4, fontSize:9, fontWeight:800, background:'var(--primary)', color:'#fff', padding:'2px 6px', borderRadius:3 }}>Principale</span>}
@@ -177,7 +179,7 @@ export default function AdminPuppyForm() {
         )}
 
         <Section title="Options">
-          <div style={{ display:'flex', gap:28, flexWrap:'wrap' }}>
+          <div className={isMobile ? 'admin-flex-wrap' : ''} style={{ display:'flex', gap:28, flexWrap:'wrap' }}>
             {[['featured','Chiot mis en avant (★ Nouveau)'],['isActive','Actif (visible en catalogue)']].map(([f,l]) => (
               <label key={f} style={{ display:'flex', alignItems:'center', gap:12, cursor:'pointer', padding:'12px 16px', borderRadius:10, background:'var(--bg-card2)', border:'1px solid var(--border)' }}>
                 <input type="checkbox" checked={Boolean(form[f])} onChange={set(f)} style={{ accentColor:'#C9762E', width:20, height:20 }} />

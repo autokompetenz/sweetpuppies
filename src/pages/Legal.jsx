@@ -228,7 +228,7 @@ function Section({ title, content, subs }) {
       <h2 style={{ fontFamily:"'Outfit',sans-serif", fontWeight:900, fontSize:'clamp(18px,2.5vw,26px)', color:'var(--text)', letterSpacing:'-0.02em', marginBottom:18 }}>
         {title}
       </h2>
-      {content && <pre style={{ fontFamily:'Nunito,Outfit,sans-serif', fontSize:14, color:'var(--text-2)', lineHeight:1.75, whiteSpace:'pre-wrap', margin:0 }}>{content}</pre>}
+      {content && <pre style={{ fontFamily:'Nunito,Outfit,sans-serif', fontSize:14, color:'var(--text-2)', lineHeight:1.75, whiteSpace:'pre-wrap', wordBreak:'break-word', margin:0 }}>{content}</pre>}
       {subs && (
         <div style={{ display:'flex', flexDirection:'column', gap:18 }}>
           {subs.map((s, i) => (
