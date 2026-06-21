@@ -125,10 +125,10 @@ export default function PuppyDetails() {
 
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 12, marginBottom: 24 }}>
               {[
-                { label: l==='fr'?'Sexe':l==='nl'?'Geslacht':l==='en'?'Gender':'Sexe', value: puppy.gender === 'male' ? t('male', l) : t('female', l), icon: puppy.gender === 'male' ? '♂' : '♀' },
+                { label: l==='fr'?'Sexe':l==='nl'?'Geslacht':l==='en'?'Gender':'Sexe', value: puppy.sex === 'Male' ? t('male', l) : t('female', l), icon: puppy.sex === 'Male' ? '♂' : '♀' },
                 { label: t('birth_date', l), value: puppy.birthDate ? formatDate(puppy.birthDate) + ' (' + getAgeString(puppy.birthDate, l) : 'N/A', icon: '📅' },
                 { label: t('color_label', l), value: puppy.color || 'N/A', icon: '🎨' },
-                { label: t('weight', l), value: puppy.weight ? `${puppy.weight} kg` : 'N/A', icon: '⚖' },
+                { label: t('weight', l), value: puppy.weightCurrent ? `${puppy.weightCurrent} kg` : 'N/A', icon: '⚖' },
               ].map(({ label, value, icon }) => (
                 <div key={label} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: isMobile ? '14px 16px' : '16px 18px', display: 'flex', alignItems: 'center', gap: 12 }}>
                   <span style={{ fontSize: 24, opacity: 0.8 }}>{icon}</span>
@@ -191,7 +191,7 @@ export default function PuppyDetails() {
                   try {
                     setReserving(true);
                     const data = Object.fromEntries(fd);
-                    const res = await reservationAPI.create({ puppyId: puppy.id, name: data.name, email: data.email, phone: data.phone, notes: data.notes });
+                    const res = await reservationAPI.create({ puppyId: puppy.id, guestName: data.name, guestEmail: data.email, guestPhone: data.phone, notes: data.notes });
                     addToast(t('reservation_confirm', l), 'success');
                     navigate(`/track/${res.data.reservationNumber}`);
                   } catch (err) {
@@ -232,10 +232,10 @@ export default function PuppyDetails() {
           <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, padding: isMobile ? 24 : 32, marginBottom: 24, boxShadow: C.shadow }}>
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: 16, marginBottom: 24 }}>
               {[
-                { icon: '📜', title: t('pedigree', l), value: puppy.pedigree || l==='fr'?'Inclus LOSH':l==='nl'?'Inclusief LOSH':l==='en'?'LOSH included':'Inclus LOSH' },
-                { icon: '📋', title: t('vaccination', l), desc: puppy.vaccinationDetails || l==='fr'?'Vaccins à jour (CHPPiLR)':l==='nl'?'Vaccinaties up-to-date (CHPPiLR)':l==='en'?'Up-to-date vaccines (CHPPiLR)':'Vaccins à jour (CHPPiLR)' },
-                { icon: '🐶', title: t('deworming', l), desc: puppy.dewormingDetails || l==='fr'?'Vermifuge régulier':l==='nl'?'Regelmatige ontworming':l==='en'?'Regular deworming':'Vermifuge régulier' },
-                { icon: '💜', title: t('microchip', l), value: puppy.microchip || l==='fr'?'Puce électronique incluse':l==='nl'?'Microchip inbegrepen':l==='en'?'Microchip included':'Puce électronique incluse' },
+                { icon: '📜', title: t('pedigree', l), value: puppy.pedigreeDocUrl || l==='fr'?'Inclus LOSH':l==='nl'?'Inclusief LOSH':l==='en'?'LOSH included':'Inclus LOSH' },
+                { icon: '📋', title: t('vaccination', l), desc: puppy.vaccinationStatus || l==='fr'?'Vaccins à jour (CHPPiLR)':l==='nl'?'Vaccinaties up-to-date (CHPPiLR)':l==='en'?'Up-to-date vaccines (CHPPiLR)':'Vaccins à jour (CHPPiLR)' },
+                { icon: '🐶', title: t('deworming', l), desc: puppy.dewormingStatus || l==='fr'?'Vermifuge régulier':l==='nl'?'Regelmatige ontworming':l==='en'?'Regular deworming':'Vermifuge régulier' },
+                { icon: '💜', title: t('microchip', l), value: puppy.microchipNumber || l==='fr'?'Puce électronique incluse':l==='nl'?'Microchip inbegrepen':l==='en'?'Microchip included':'Puce électronique incluse' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 16, padding: '20px', background: C.card2, borderRadius: 12 }}>
                   <div style={{ width: 52, height: 52, borderRadius: 12, background: 'linear-gradient(135deg,rgba(201,118,46,0.15),rgba(201,118,46,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, flexShrink: 0 }}>
@@ -253,13 +253,11 @@ export default function PuppyDetails() {
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 16 }}>
               <div style={{ background: C.card2, borderRadius: 12, padding: 20 }}>
                 <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.text3, marginBottom: 8 }}>{t('mother', l)}</p>
-                <p style={{ fontSize: 16, fontWeight: 700, color: C.text }}>{puppy.motherName || 'N/A'}</p>
-                {puppy.motherBreed && <p style={{ fontSize: 13, color: C.text3 }}>{puppy.motherBreed}</p>}
+                <p style={{ fontSize: 16, fontWeight: 700, color: C.text }}>{puppy.parentMotherName || 'N/A'}</p>
               </div>
               <div style={{ background: C.card2, borderRadius: 12, padding: 20 }}>
                 <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.text3, marginBottom: 8 }}>{t('father', l)}</p>
-                <p style={{ fontSize: 16, fontWeight: 700, color: C.text }}>{puppy.fatherName || 'N/A'}</p>
-                {puppy.fatherBreed && <p style={{ fontSize: 13, color: C.text3 }}>{puppy.fatherBreed}</p>}
+                <p style={{ fontSize: 16, fontWeight: 700, color: C.text }}>{puppy.parentFatherName || 'N/A'}</p>
               </div>
             </div>
           </div>

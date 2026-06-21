@@ -184,6 +184,9 @@ app.get('/api/admin/puppies', authenticateAdmin, async (req, res) => {
 app.post('/api/admin/puppies', authenticateAdmin, upload.any(), async (req, res) => {
   req.files = (req.files || []).filter(f => f.fieldname === 'images');
   try {
+    const sexMap = { 'male': 'Male', 'female': 'Female' };
+    if (req.body.sex) req.body.sex = sexMap[req.body.sex.toLowerCase()] || req.body.sex;
+
     const requiredFields = ['name', 'breed', 'sex', 'birthDate', 'color', 'price'];
     const missingFields = requiredFields.filter(field => !req.body[field]);
     if (missingFields.length > 0) {
@@ -231,6 +234,9 @@ app.post('/api/admin/puppies', authenticateAdmin, upload.any(), async (req, res)
 app.put('/api/admin/puppies/:id', authenticateAdmin, upload.any(), async (req, res) => {
   req.files = (req.files || []).filter(f => f.fieldname === 'images');
   try {
+    const sexMap = { 'male': 'Male', 'female': 'Female' };
+    if (req.body.sex) req.body.sex = sexMap[req.body.sex.toLowerCase()] || req.body.sex;
+
     const { id } = req.params;
     const puppyId = Number(id);
     if (isNaN(puppyId) || puppyId <= 0) {

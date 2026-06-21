@@ -75,12 +75,12 @@ export default function PuppyCard({ puppy, index = 0 }) {
           </h3>
         </Link>
         <p style={{ fontSize: 13, color: 'var(--text-3)', marginBottom: 14, fontWeight: 500 }}>
-          {puppy.breed} · {puppy.gender === 'male' ? t('male', l) : t('female', l)} · {getAgeString(puppy.birthDate, l)}
+          {puppy.breed} · {puppy.sex === 'Male' ? t('male', l) : t('female', l)} · {getAgeString(puppy.birthDate, l)}
         </p>
 
         <div style={{ display: 'flex', gap: 14, marginBottom: 16, paddingBottom: 16, borderBottom: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, color: 'var(--text-3)' }}>
-            <span style={{ color: 'var(--primary)' }}>📏</span> {puppy.weight || '?'} kg
+            <span style={{ color: 'var(--primary)' }}>📏</span> {puppy.weightCurrent || '?'} kg
           </div>
         </div>
 

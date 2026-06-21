@@ -5,10 +5,10 @@ import { useToastStore } from '../../store';
 import { BREEDS } from '../../utils/helpers';
 
 const EMPTY = {
-  name:'', breed:'Golden Retriever', gender:'male', birthDate:'', price:'',
-  weight:'', color:'', description:'', motherName:'', motherBreed:'',
-  fatherName:'', fatherBreed:'', pedigree:'', microchip:'',
-  vaccinationDetails:'', dewormingDetails:'', availableFrom:'',
+  name:'', breed:'Golden Retriever', sex:'Male', birthDate:'', price:'',
+  weightCurrent:'', color:'', description:'', parentMotherName:'',
+  parentFatherName:'', pedigreeDocUrl:'', microchipNumber:'',
+  vaccinationStatus:'', dewormingStatus:'', availableFrom:'',
   featured:false, isActive:true,
 };
 
@@ -57,7 +57,7 @@ export default function AdminPuppyForm() {
     if (isEdit) {
       adminAPI.getPuppyById(id).then(r => {
         const c = r.data.puppy;
-        setForm({ ...EMPTY, ...c, price: String(c.price || ''), weight: String(c.weight || '') });
+        setForm({ ...EMPTY, ...c, price: String(c.price || ''), weightCurrent: String(c.weightCurrent || '') });
         const existing = [];
         ['imageUrl', 'imageUrl2', 'imageUrl3', 'imageUrl4', 'imageUrl5'].forEach((field, idx) => {
           if (c[field]) existing.push({ url: c[field], id: `existing-${idx + 1}`, isExisting: true, field });
@@ -125,10 +125,10 @@ export default function AdminPuppyForm() {
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16, marginBottom:16 }}>
             <Field label="Nom *" field="name" placeholder="Luna" value={form.name} onChange={set("name")} />
             <Field label="Race *" field="breed" opts={BREEDS} value={form.breed} onChange={set("breed")} />
-            <Field label="Sexe" field="gender" opts={['male','female']} value={form.gender} onChange={set("gender")} />
+            <Field label="Sexe" field="sex" opts={['Male','Female']} value={form.sex} onChange={set("sex")} />
             <Field label="Date de naissance" field="birthDate" type="date" value={form.birthDate} onChange={set("birthDate")} />
             <Field label="Prix (€) *" field="price" type="number" placeholder="1500" value={form.price} onChange={set("price")} />
-            <Field label="Poids (kg)" field="weight" type="number" placeholder="5" value={form.weight} onChange={set("weight")} />
+            <Field label="Poids (kg)" field="weightCurrent" type="number" placeholder="5" value={form.weightCurrent} onChange={set("weightCurrent")} />
             <Field label="Couleur" field="color" placeholder="Fauve" value={form.color} onChange={set("color")} />
             <Field label="Disponible à partir du" field="availableFrom" type="date" value={form.availableFrom} onChange={set("availableFrom")} />
           </div>
@@ -137,19 +137,17 @@ export default function AdminPuppyForm() {
 
         <Section title="Parents">
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
-            <Field label="Nom de la mère" field="motherName" placeholder="Bella" value={form.motherName} onChange={set("motherName")} />
-            <Field label="Race de la mère" field="motherBreed" placeholder="Golden Retriever" value={form.motherBreed} onChange={set("motherBreed")} />
-            <Field label="Nom du père" field="fatherName" placeholder="Max" value={form.fatherName} onChange={set("fatherName")} />
-            <Field label="Race du père" field="fatherBreed" placeholder="Golden Retriever" value={form.fatherBreed} onChange={set("fatherBreed")} />
+            <Field label="Nom de la mère" field="parentMotherName" placeholder="Bella" value={form.parentMotherName} onChange={set("parentMotherName")} />
+            <Field label="Nom du père" field="parentFatherName" placeholder="Max" value={form.parentFatherName} onChange={set("parentFatherName")} />
           </div>
         </Section>
 
         <Section title="Santé">
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
-            <Field label="Pedigree" field="pedigree" placeholder="LOSH XXXX" value={form.pedigree} onChange={set("pedigree")} />
-            <Field label="Puce électronique" field="microchip" placeholder="528140000000000" value={form.microchip} onChange={set("microchip")} />
-            <Field label="Détails vaccination" field="vaccinationDetails" placeholder="CHPPiLR, rappels..." value={form.vaccinationDetails} onChange={set("vaccinationDetails")} />
-            <Field label="Détails vermifuge" field="dewormingDetails" placeholder="Vermifugé toutes les 2 semaines..." value={form.dewormingDetails} onChange={set("dewormingDetails")} />
+            <Field label="Pedigree" field="pedigreeDocUrl" placeholder="LOSH XXXX" value={form.pedigreeDocUrl} onChange={set("pedigreeDocUrl")} />
+            <Field label="Puce électronique" field="microchipNumber" placeholder="528140000000000" value={form.microchipNumber} onChange={set("microchipNumber")} />
+            <Field label="Statut vaccination" field="vaccinationStatus" placeholder="À jour" value={form.vaccinationStatus} onChange={set("vaccinationStatus")} />
+            <Field label="Statut vermifuge" field="dewormingStatus" placeholder="À jour" value={form.dewormingStatus} onChange={set("dewormingStatus")} />
           </div>
         </Section>
 
