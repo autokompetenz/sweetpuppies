@@ -17,6 +17,16 @@ if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET manquant');
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
+// Ensure storage bucket exists
+(async () => {
+  const { data: buckets } = await supabase.storage.listBuckets();
+  if (!buckets?.find(b => b.name === 'puppies')) {
+    const { error } = await supabase.storage.createBucket('puppies', { public: true });
+    if (error) console.error('⚠ Erreur création bucket puppies:', error.message);
+    else console.log('✅ Bucket puppies créé');
+  }
+})();
+
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024, fieldSize: 10 * 1024 * 1024 },
