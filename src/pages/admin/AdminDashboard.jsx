@@ -16,14 +16,14 @@ export default function AdminDashboard() {
   if (loading) return <div style={{ padding: 40 }}><Loader text="Chargement du tableau de bord..." /></div>;
   if (!data) return null;
 
-  const { stats, recentReservations } = data;
+  const { totalPuppies = 0, totalReservations = 0, pendingReservations = 0, totalRevenue = 0, recentReservations = [] } = data;
 
   const statCards = [
-    { icon:'👥', label:'Clients', value: stats?.totalGuests || 0, color:'#60A5FA', sub:'Total clients' },
-    { icon:'📈', label:'Réservations', value: stats?.totalReservations || 0, color:'#C084FC', sub:'Total réservations' },
-    { icon:'💵', label:'Chiffre d’affaires', value: formatEuro(stats?.totalRevenue || 0), color:'#C9762E', sub:'Hors annulées', wide: true },
-    { icon:'?', label:'En attente', value: stats?.pendingReservations || 0, color: (stats?.pendingReservations || 0) > 0 ? '#FFAA00' : '#22C55E', sub: (stats?.pendingReservations || 0) > 0 ? 'Action requise' : 'Aucune en attente' },
-    { icon:'💵', label:'Chiots actifs', value: stats?.totalPuppies || 0, color:'#22C55E', sub:'En catalogue' },
+    { icon:'👥', label:'Chiots', value: totalPuppies, color:'#60A5FA', sub:'En catalogue' },
+    { icon:'📈', label:'Réservations', value: totalReservations, color:'#C084FC', sub:'Total réservations' },
+    { icon:'💵', label:'Chiffre d\'affaires', value: formatEuro(totalRevenue), color:'#C9762E', sub:'Hors annulées', wide: true },
+    { icon:'?', label:'En attente', value: pendingReservations, color: pendingReservations > 0 ? '#FFAA00' : '#22C55E', sub: pendingReservations > 0 ? 'Action requise' : 'Aucune en attente' },
+    { icon:'🐾', label:'Disponibles', value: data?.availablePuppies || 0, color:'#22C55E', sub:'À l\'adoption' },
   ];
 
   return (
@@ -77,7 +77,7 @@ export default function AdminDashboard() {
                   onMouseOver={e => e.currentTarget.style.background = 'var(--bg-card2)'}
                   onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
                   <td style={{ padding:'14px 20px' }}>
-                    <span style={{ fontFamily:'monospace', color:'var(--primary)', fontSize:13, fontWeight:800, letterSpacing:'0.05em', background:'var(--primary-bg)', padding:'4px 10px', borderRadius:6, border:'1px solid var(--primary-border)' }}>{res.number}</span>
+                    <span style={{ fontFamily:'monospace', color:'var(--primary)', fontSize:13, fontWeight:800, letterSpacing:'0.05em', background:'var(--primary-bg)', padding:'4px 10px', borderRadius:6, border:'1px solid var(--primary-border)' }}>{res.reservationNumber}</span>
                   </td>
                   <td style={{ padding:'14px 20px' }}>
                     <p style={{ fontSize:14, color:'var(--text)', fontWeight:700 }}>{res.guestName}</p>
