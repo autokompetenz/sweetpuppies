@@ -5,7 +5,7 @@ const multer = require('multer');
 const { createClient } = require('@supabase/supabase-js');
 const rateLimit = require('express-rate-limit');
 const { prisma } = require('../lib/prisma.js');
-const { sendReservationConfirmation } = require('../lib/mailer.js');
+const { sendReservationConfirmation, sendAdminNotification, sendReplyToCustomer } = require('../lib/mailer.js');
 const { generateReservationNumber } = require('../lib/helpers.js');
 
 const app = express();
@@ -438,13 +438,18 @@ app.post('/api/reservations', async (req, res) => {
       return newReservation;
     });
 
-    // Send confirmation email (non-blocking)
+    // Send confirmation emails (non-blocking)
     sendReservationConfirmation({
       email: guestEmail,
       name: guestName,
       reservation,
       puppy,
     }).catch(err => console.error('Confirmation email error:', err));
+
+    sendAdminNotification({
+      reservation,
+      puppy,
+    }).catch(err => console.error('Admin notification error:', err));
 
     res.status(201).json({ success: true, reservationNumber: reservation.reservationNumber, reservation });
   } catch (e) {
@@ -555,6 +560,46 @@ app.patch('/api/admin/reservations/:id', authenticateAdmin, async (req, res) => 
   } catch (e) {
     console.error('Update reservation error:', e);
     res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+// ─── Admin: Reply to customer ─────────────────────────────────────────────
+app.post('/api/admin/reservations/:id/reply', authenticateAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reservationId = parseInt(id);
+    if (isNaN(reservationId)) return res.status(400).json({ error: 'ID invalide' });
+
+    const { message, subject } = req.body;
+    if (!message || !message.trim()) {
+      return res.status(400).json({ error: 'Message requis' });
+    }
+
+    const reservation = await prisma.reservation.findUnique({
+      where: { id: reservationId },
+      include: { puppy: { select: { name: true } } },
+    });
+    if (!reservation) return res.status(404).json({ error: 'Réservation non trouvée' });
+
+    await sendReplyToCustomer({
+      email: reservation.guestEmail,
+      name: reservation.guestName,
+      subject: subject || `Sweet Puppies — Suivi réservation ${reservation.reservationNumber}`,
+      message: message.trim(),
+    });
+
+    await prisma.reservationTracking.create({
+      data: {
+        reservationId,
+        status: reservation.status,
+        comment: `📧 Message envoyé au client : ${message.trim().substring(0, 100)}${message.length > 100 ? '...' : ''}`,
+      },
+    });
+
+    res.json({ success: true, message: 'Message envoyé au client' });
+  } catch (e) {
+    console.error('Reply error:', e);
+    res.status(500).json({ error: 'Erreur lors de l\'envoi du message' });
   }
 });
 

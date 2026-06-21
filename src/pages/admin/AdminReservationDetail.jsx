@@ -17,6 +17,8 @@ export default function AdminReservationDetail() {
   const [newStatus, setNewStatus] = useState('');
   const [comment, setComment] = useState('');
   const [saving, setSaving] = useState(false);
+  const [replyMsg, setReplyMsg] = useState('');
+  const [sendingReply, setSendingReply] = useState(false);
 
   const load = () => {
     adminAPI.reservationById(id)
@@ -47,6 +49,18 @@ export default function AdminReservationDetail() {
     } catch (err) {
       addToast(err.response?.data?.error || 'Suppression impossible', 'error');
     }
+  };
+
+  const handleReply = async () => {
+    if (!replyMsg.trim()) return;
+    setSendingReply(true);
+    try {
+      await adminAPI.replyToCustomer(id, { message: replyMsg.trim() });
+      addToast('Message envoyé au client', 'success');
+      setReplyMsg('');
+    } catch (err) {
+      addToast(err.response?.data?.error || 'Erreur d\'envoi', 'error');
+    } finally { setSendingReply(false); }
   };
 
   if (loading) return <div style={{ padding:40 }}><Loader /></div>;
@@ -169,6 +183,25 @@ export default function AdminReservationDetail() {
               {saving ? '⏳...' : '✉ Mettre à jour'}
             </button>
           </form>
+
+          <div style={cardStyle}>
+            <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.22em', textTransform:'uppercase', color:'var(--primary)', marginBottom:18 }}>Répondre au client</p>
+            <div style={{ display:'flex', gap:10, marginBottom:16 }}>
+              <a href={`mailto:${reservation.guestEmail}?subject=${encodeURIComponent('Sweet Puppies — Suivi réservation ' + reservation.reservationNumber)}`}
+                style={{ flex:1, textAlign:'center', padding:'12px 14px', fontSize:13, fontWeight:700, color:'#fff', background:'var(--primary)', borderRadius:8, textDecoration:'none', fontFamily:"'Outfit',sans-serif" }}>
+                📧 Email
+              </a>
+              <a href={`tel:${reservation.guestPhone}`}
+                style={{ flex:1, textAlign:'center', padding:'12px 14px', fontSize:13, fontWeight:700, color:'var(--text)', background:'var(--bg-card2)', border:'1px solid var(--border)', borderRadius:8, textDecoration:'none', fontFamily:"'Outfit',sans-serif" }}>
+                📞 Appeler
+              </a>
+            </div>
+            <textarea value={replyMsg} onChange={e => setReplyMsg(e.target.value)} rows={4}
+              placeholder="Écrivez un message au client..." className="input-luxury" style={{ resize:'none', fontSize:14, marginBottom:14 }} />
+            <button onClick={handleReply} disabled={sendingReply || !replyMsg.trim()} className="btn-primary" style={{ width:'100%', justifyContent:'center', padding:14, fontSize:14 }}>
+              {sendingReply ? '⏳...' : '✉ Envoyer le message'}
+            </button>
+          </div>
 
           <div style={{ marginTop:20, padding:20, background:'rgba(239,68,68,0.06)', border:'1px solid rgba(239,68,68,0.2)', borderRadius:12 }}>
             <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.15em', textTransform:'uppercase', color:'#DC2626', marginBottom:12 }}>Zone dangereuse</p>

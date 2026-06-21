@@ -36,6 +36,7 @@ export const adminAPI = {
   reservationById: (id)   => api.get(`/admin/reservations/${id}`),
   updateReservation:(id,d) => api.patch(`/admin/reservations/${id}`, d),
   deleteReservation:(id)  => api.delete(`/admin/reservations/${id}`),
+  replyToCustomer:(id,m)  => api.post(`/admin/reservations/${id}/reply`, m),
   clients:         ()     => api.get('/admin/clients'),
   waitlist:        ()     => api.get('/admin/waitlist'),
 };
