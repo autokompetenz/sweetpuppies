@@ -23,7 +23,7 @@ export default function PuppyCard({ puppy, index = 0 }) {
       transition={{ delay: index * 0.06, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
       onMouseOver={() => setHovered(true)}
       onMouseOut={() => setHovered(false)}
-      className="car-card"
+      className="puppy-card"
       style={{
         background: 'var(--bg-card)', borderRadius: 12, overflow: 'hidden',
         border: `1px solid ${hovered ? 'rgba(201,118,46,0.3)' : 'var(--border)'}`,
@@ -35,8 +35,8 @@ export default function PuppyCard({ puppy, index = 0 }) {
       <Link to={`/puppy/${puppy.slug || puppy.id}`} style={{ display: 'block', position: 'relative', overflow: 'hidden' }}>
         <img src={puppy.imageUrl || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&q=70'}
           alt={puppy.name}
-          className="car-img-zoom"
-          style={{ width: '100%', height: 190, objectFit: 'cover', display: 'block' }} />
+          className="puppy-img-zoom"
+          style={{ width: '100%', height: 280, objectFit: 'cover', display: 'block' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 55%)' }} />
 
         <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', gap: 7 }}>
