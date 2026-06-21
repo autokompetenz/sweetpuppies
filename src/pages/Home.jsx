@@ -190,18 +190,35 @@ export default function Home() {
 
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? 14 : 22 }}>
             {[
-              { stars:5, text: { fr:'Un accueil chaleureux et professionnel. Notre petit Luna est en pleine forme ! Merci à toute l’équipe.', nl:'Een warm en professioneel onthaal. Onze kleine Luna is in topvorm!', en:'A warm and professional welcome. Our little Luna is in great shape!' }, author:'Sophie M.', city:'Arlon' },
-              { stars:5, text: { fr:'Éleveur sérieux, chiots en parfaite santé. Les conseils donnés étaient très utiles. Je recommande.', nl:'Serieuze fokker, puppy’s in perfecte gezondheid. Het advies was erg nuttig. Ik beveel aan.', en:'Serious breeder, puppies in perfect health. The advice was very useful. I recommend.' }, author:'Thomas D.', city:'Luxembourg' },
-              { stars:5, text: { fr:'Nous avons réservé notre Oscar il y a 3 mois. Tout s’est passé exactement comme prévu. Communication parfaite.', nl:'We hebben onze Oscar 3 maanden geleden gereserveerd. Alles ging precies zoals gepland. Perfecte communicatie.', en:'We reserved our Oscar 3 months ago. Everything went exactly as planned. Perfect communication.' }, author:'Maria L.', city:'Namur' },
+              { rating:5, content:'Un accueil chaleureux et professionnel. Notre petite Luna est en pleine forme et s\'est parfaitement adaptée à sa nouvelle maison. La livraison s\'est faite dans les conditions idéales.', author:'Sophie M.', city:'Arlon', puppy:'Luna' },
+              { rating:5, content:'Éleveur sérieux, chiots en parfaite santé. Les conseils donnés étaient très utiles. La livraison a été rapide et sécurisée. Je recommande vivement.', author:'Thomas D.', city:'Luxembourg', puppy:'Oscar' },
+              { rating:5, content:'Nous avons réservé notre Oscar il y a 3 mois. Tout s\'est passé exactement comme prévu. Communication parfaite et livraison impeccable.', author:'Maria L.', city:'Namur', puppy:'Oscar' },
+              { rating:5, content:'Charlie est arrivé en pleine forme, bien sociabilisé et déjà propre. Le suivi après la livraison est excellent, on se sent vraiment accompagné.', author:'Pierre H.', city:'Bruxelles', puppy:'Charlie' },
+              { rating:4, content:'Très contente de notre expérience. La livraison a été bien organisée et Nala était en pleine santé. Je retire juste une étoile car nous aurions aimé plus de photos avant la réservation.', author:'Julie V.', city:'Liège', puppy:'Nala' },
+              { rating:5, content:'Rocky est un amour ! Livré à domicile dans les temps, avec son carnet de santé et tous les papiers. Éleveur à l\'écoute et très professionnel.', author:'Marc B.', city:'Charleroi', puppy:'Rocky' },
+              { rating:4, content:'Cookie est adorable et bien dans ses pattes. La livraison a pris un peu de retard mais l\'éleveur nous a prévenus à l\'avance. Bon suivi global.', author:'Céline R.', city:'Mons', puppy:'Cookie' },
+              { rating:5, content:'De la réservation à la livraison, tout a été parfait. Notre Titan est un chiot magnifique, bien dans sa tête et dans son corps. Merci pour votre professionnalisme.', author:'Antoine G.', city:'Namur', puppy:'Titan' },
+              { rating:5, content:'Nous avons pu venir chercher Milo directement à l\'élevage. Accueil chaleureux, installation impeccable. Le chiot était déjà habitué aux caresses et aux enfants.', author:'Emma S.', city:'Bastogne', puppy:'Milo' },
+              { rating:3, content:'Plume est en bonne santé mais nous avons eu un petit souci de communication sur la date de livraison. Récupéré in extremis. Le chiot est parfait cela dit.', author:'Luc P.', city:'Bruxelles', puppy:'Plume' },
+              { rating:4, content:'Simba est un amour, très joueur et déjà bien éduqué. La livraison s\'est bien passée. Seul bémol : le dossier de suivi en ligne pourrait être plus détaillé.', author:'Sarah W.', city:'Liège', puppy:'Simba' },
+              { rating:5, content:'Duke est arrivé avec tout son nécessaire : carnet de santé, pedigree, puce. Livraison transfrontalière sans aucun problème. Éleveur très réactif par email.', author:'David K.', city:'Luxembourg', puppy:'Duke' },
+              { rating:4, content:'Bella est en pleine forme et très câline. La livraison a été faite avec soin. Je recommande pour le sérieux et la qualité du suivi post-livraison.', author:'Nathalie T.', city:'Namur', puppy:'Bella' },
+              { rating:5, content:'Nous recommandons les yeux fermés. De la réservation à la livraison, tout a été clair et transparent. Notre Max est un chiot en pleine santé, bien élevé.', author:'François M.', city:'Arlon', puppy:'Max' },
+              { rating:3, content:'Chanel est magnifique et bien portante. Cependant le délai de livraison annoncé n\'a pas été respecté (2 jours de retard). L\'équipe s\'est excusée et a offert un petit panier de bienvenue.', author:'Laura D.', city:'Bruxelles', puppy:'Chanel' },
+              { rating:4, content:'Buddy est un chiot extraordinaire, très sociable. Livraison bien organisée avec un suivi SMS appréciable. Juste un petit délai sur la réponse à notre premier message.', author:'Hugo L.', city:'Mons', puppy:'Buddy' },
+              { rating:5, content:'Neige est arrivée dans un état parfait, propre et déjà habituée à la propreté. L\'éleveur a pris le temps de tout nous expliquer. Livraison douce et sécurisée.', author:'Camille J.', city:'Liège', puppy:'Neige' },
+              { rating:4, content:'Sunny est un rayon de soleil ! Très bonne expérience globale. La livraison s\'est bien passée. Nous aurions juste aimé un suivi photo plus régulier avant la réservation.', author:'Romain F.', city:'Charleroi', puppy:'Sunny' },
+              { rating:5, content:'Apollo s\'est intégré à la maison comme s\'il avait toujours vécu ici. Livraison parfaite, chiot en pleine santé. Un grand merci pour l\'accompagnement et les conseils.', author:'Valérie P.', city:'Bastogne', puppy:'Apollo' },
+              { rating:3, content:'Fripon est en bonne santé et très joueur. La livraison a été correcte mais le suivi des papiers a pris plus de temps que prévu. Satisfait du chiot malgré tout.', author:'Benoît C.', city:'Luxembourg', puppy:'Fripon' },
             ].map((r, i) => (
               <motion.div key={i} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:i*0.1 }}
                 style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:14, padding:'28px 24px', boxShadow:'var(--shadow-sm)' }}>
                 <div style={{ display:'flex', gap:2, marginBottom:14 }}>
-                  {Array.from({length:5}).map((_,j)=><span key={j} style={{ color:j<r.stars?'#FFAA00':'var(--border-2)', fontSize:18 }}>★ </span>)}
+                  {Array.from({length:5}).map((_,j)=><span key={j} style={{ color:j<r.rating?'#FFAA00':'var(--border-2)', fontSize:18 }}>★ </span>)}
                 </div>
-                <p style={{ fontSize:14, color:'var(--text-2)', lineHeight:1.7, marginBottom:16 }}>"{r.text[l] || r.text.fr}"</p>
+                <p style={{ fontSize:14, color:'var(--text-2)', lineHeight:1.7, marginBottom:16 }}>"{r.content}"</p>
                 <p style={{ fontSize:13, fontWeight:700, color:'var(--text)' }}>{r.author}</p>
-                <p style={{ fontSize:11, color:'var(--text-3)' }}>{r.city}</p>
+                <p style={{ fontSize:11, color:'var(--text-3)' }}>{r.city} &middot; {r.puppy}</p>
               </motion.div>
             ))}
           </div>
