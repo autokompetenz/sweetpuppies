@@ -126,7 +126,7 @@ export default function PuppyDetails() {
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 12, marginBottom: 24 }}>
               {[
                 { label: l==='fr'?'Sexe':l==='nl'?'Geslacht':l==='en'?'Gender':'Sexe', value: puppy.sex === 'Male' ? t('male', l) : t('female', l), icon: puppy.sex === 'Male' ? '♂' : '♀' },
-                { label: t('birth_date', l), value: puppy.birthDate ? formatDate(puppy.birthDate) + ' (' + getAgeString(puppy.birthDate, l) : 'N/A', icon: '📅' },
+                { label: t('birth_date', l), value: puppy.birthDate ? formatDate(puppy.birthDate) + ' (' + getAgeString(puppy.birthDate, l) + ')' : 'N/A', icon: '📅' },
                 { label: t('color_label', l), value: puppy.color || 'N/A', icon: '🎨' },
                 { label: t('weight', l), value: puppy.weightCurrent ? `${puppy.weightCurrent} kg` : 'N/A', icon: '⚖' },
               ].map(({ label, value, icon }) => (
