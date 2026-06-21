@@ -15,7 +15,8 @@ const INFO_TITLE = {
 };
 
 export default function PuppyDetails() {
-  const { id } = useParams();
+  const { slug } = useParams();
+  const id = slug;
   const navigate = useNavigate();
   const { addToast } = useToastStore();
   const { lang } = useLangStore();
