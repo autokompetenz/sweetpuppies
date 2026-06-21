@@ -206,7 +206,7 @@ app.post('/api/admin/puppies', authenticateAdmin, upload.any(), async (req, res)
     const sexMap = { 'male': 'Male', 'female': 'Female' };
     if (req.body.sex) req.body.sex = sexMap[req.body.sex.toLowerCase()] || req.body.sex;
 
-    const requiredFields = ['name', 'breed', 'sex', 'birthDate', 'color', 'price'];
+    const requiredFields = ['name', 'breed', 'sex', 'birthDate', 'price'];
     const missingFields = requiredFields.filter(field => !req.body[field]);
     if (missingFields.length > 0) {
       return res.status(400).json({ error: `Champs obligatoires: ${missingFields.join(', ')}` });
@@ -217,13 +217,12 @@ app.post('/api/admin/puppies', authenticateAdmin, upload.any(), async (req, res)
       breed: req.body.breed,
       sex: req.body.sex,
       birthDate: new Date(req.body.birthDate),
-      color: req.body.color,
+      color: req.body.color || 'Non spécifiée',
       price: parseFloat(req.body.price),
       deposit: req.body.deposit ? parseFloat(req.body.deposit) : Math.round(parseFloat(req.body.price) * 0.25),
       microchipNumber: req.body.microchipNumber || null,
       vaccinationStatus: req.body.vaccinationStatus || 'À jour',
       dewormingStatus: req.body.dewormingStatus || 'À jour',
-      weightCurrent: req.body.weightCurrent ? parseFloat(req.body.weightCurrent) : null,
       weightEstimatedAdult: req.body.weightEstimatedAdult ? parseFloat(req.body.weightEstimatedAdult) : null,
       description: req.body.description || null,
       pedigreeDocUrl: req.body.pedigreeDocUrl || null,
@@ -267,13 +266,12 @@ app.put('/api/admin/puppies/:id', authenticateAdmin, upload.any(), async (req, r
       breed: req.body.breed,
       sex: req.body.sex,
       birthDate: new Date(req.body.birthDate),
-      color: req.body.color,
+      color: req.body.color || 'Non spécifiée',
       price: parseFloat(req.body.price),
       deposit: req.body.deposit ? parseFloat(req.body.deposit) : Math.round(parseFloat(req.body.price) * 0.25),
       microchipNumber: req.body.microchipNumber || null,
       vaccinationStatus: req.body.vaccinationStatus || 'À jour',
       dewormingStatus: req.body.dewormingStatus || 'À jour',
-      weightCurrent: req.body.weightCurrent ? parseFloat(req.body.weightCurrent) : null,
       weightEstimatedAdult: req.body.weightEstimatedAdult ? parseFloat(req.body.weightEstimatedAdult) : null,
       description: req.body.description || null,
       pedigreeDocUrl: req.body.pedigreeDocUrl || null,

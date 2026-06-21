@@ -6,7 +6,7 @@ import { BREEDS } from '../../utils/helpers';
 
 const EMPTY = {
   name:'', breed:'Golden Retriever', sex:'Male', birthDate:'', price:'',
-  weightCurrent:'', color:'', description:'', parentMotherName:'',
+  description:'', parentMotherName:'',
   parentFatherName:'', pedigreeDocUrl:'', microchipNumber:'',
   vaccinationStatus:'', dewormingStatus:'',
   featured:false, isActive:true,
@@ -57,7 +57,7 @@ export default function AdminPuppyForm() {
     if (isEdit) {
       adminAPI.getPuppyById(id).then(r => {
         const c = r.data.puppy;
-        setForm({ ...EMPTY, ...c, price: String(c.price || ''), weightCurrent: String(c.weightCurrent || '') });
+        setForm({ ...EMPTY, ...c, price: String(c.price || '') });
         const existing = [];
         ['imageUrl', 'imageUrl2', 'imageUrl3', 'imageUrl4', 'imageUrl5'].forEach((field, idx) => {
           if (c[field]) existing.push({ url: c[field], id: `existing-${idx + 1}`, isExisting: true, field });
@@ -128,8 +128,6 @@ export default function AdminPuppyForm() {
             <Field label="Sexe" field="sex" opts={['Male','Female']} value={form.sex} onChange={set("sex")} />
             <Field label="Date de naissance" field="birthDate" type="date" value={form.birthDate} onChange={set("birthDate")} />
             <Field label="Prix (€) *" field="price" type="number" placeholder="1500" value={form.price} onChange={set("price")} />
-            <Field label="Poids (kg)" field="weightCurrent" type="number" placeholder="5" value={form.weightCurrent} onChange={set("weightCurrent")} />
-            <Field label="Couleur" field="color" placeholder="Fauve" value={form.color} onChange={set("color")} />
           </div>
           <Field label="Description" field="description" rows={4} placeholder="Description détaillée du chiot..." value={form.description} onChange={set("description")} />
         </Section>

@@ -12,7 +12,7 @@ CREATE TABLE "Puppy" (
   "breed"               TEXT NOT NULL,
   "sex"                 "Sex" NOT NULL,
   "birthDate"           TIMESTAMP NOT NULL,
-  "color"               TEXT NOT NULL,
+  "color"               TEXT DEFAULT 'Non spécifiée',
   "microchipNumber"     TEXT UNIQUE,
   "vaccinationStatus"   TEXT DEFAULT 'À jour',
   "dewormingStatus"     TEXT DEFAULT 'À jour',
@@ -45,6 +45,8 @@ CREATE TABLE "Guest" (
   "email"     TEXT NOT NULL,
   "phone"     TEXT NOT NULL,
   "address"   TEXT,
+  "hasPet"    BOOLEAN,
+  "hasLostPet" BOOLEAN,
   "createdAt" TIMESTAMP DEFAULT NOW()
 );
 
@@ -56,6 +58,15 @@ CREATE TABLE "Reservation" (
   "guestName"         TEXT NOT NULL,
   "guestEmail"        TEXT NOT NULL,
   "guestPhone"        TEXT NOT NULL,
+  "guestProfession"   TEXT,
+  "guestHomeAddress"  TEXT,
+  "paymentMethod"     TEXT DEFAULT 'deposit',
+  "paymentLabel"      TEXT,
+  "hasPet"            BOOLEAN,
+  "hasLostPet"        BOOLEAN,
+  "discountPercent"   FLOAT,
+  "discountAmount"    FLOAT,
+  "totalPrice"        FLOAT,
   "depositAmount"     FLOAT,
   "depositPaidAt"     TIMESTAMP,
   "balanceAmount"     FLOAT,
