@@ -6,6 +6,7 @@ import Toast from './components/Toast';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ClientBottomNav from './components/ClientBottomNav';
+import MailButton from './components/MailButton';
 
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -38,6 +39,7 @@ function PublicLayout({ children }) {
       {children}
       <Footer />
       <ClientBottomNav />
+      <MailButton />
       <Toast />
     </>
   );

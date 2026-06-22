@@ -237,6 +237,17 @@ textarea.input-luxury { resize: vertical; min-height: 100px; line-height: 1.65; 
   transition:all 0.3s var(--ease); animation:float 3s ease-in-out infinite;
 }
 .chat-btn:hover { transform:scale(1.1)!important; animation:none; border-radius:var(--radius); }
+
+.mail-btn {
+  position:fixed; bottom:28px; right:28px; z-index:998;
+  width:56px; height:56px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:all 0.3s var(--ease);
+}
+.mail-btn:hover { transform:scale(1.12); }
+@media (max-width:640px) {
+  .mail-btn { width:48px; height:48px; bottom:80px; right:14px; }
+}
 .chat-notif {
   position:absolute; top:-3px; right:-3px; width:20px; height:20px;
   background:var(--secondary); border-radius:50%; border:2px solid var(--bg);
