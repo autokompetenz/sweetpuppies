@@ -75,7 +75,7 @@ export default function PuppyCard({ puppy, index = 0 }) {
           </h3>
         </Link>
         <p style={{ fontSize: 13, color: 'var(--text-3)', marginBottom: 14, fontWeight: 500 }}>
-          {puppy.breed} · {puppy.sex === 'Male' ? t('male', l) : t('female', l)} · {getAgeString(puppy.birthDate, l)}
+            {puppy.breed}{puppy.breed === 'Canis Vulgaris' && <span style={{fontSize:10,color:'var(--text-3)',marginLeft:4}}>({t('canis_hint', l)})</span>} · {puppy.sex === 'Male' ? t('male', l) : t('female', l)} · {getAgeString(puppy.birthDate, l)}
         </p>
 
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 10 }}>

@@ -115,6 +115,7 @@ export const translations = {
   waitlist_title:   { fr:'Liste d\'attente',  nl:'Wachtlijst',        en:'Waitlist' },
   waitlist_sub:     { fr:'Cette race n\'est pas disponible actuellement ? Inscrivez-vous pour être notifié(e).', nl:'Dit ras is momenteel niet beschikbaar? Meld u aan om een melding te ontvangen.', en:'This breed is not currently available? Sign up to be notified.' },
   waitlist_success: { fr:'Inscrit(e) avec succès ! Nous vous tiendrons informé(e).', nl:'Succesvol aangemeld! We houden u op de hoogte.', en:'Successfully registered! We\'ll keep you informed.' },
+  canis_hint:       { fr:'Chien croisé',     nl:'Kruising',          en:'Mixed breed' },
   dark_mode:        { fr:'Mode sombre',       nl:'Donkere modus',     en:'Dark mode' },
   light_mode:       { fr:'Mode clair',        nl:'Lichte modus',      en:'Light mode' },
 };

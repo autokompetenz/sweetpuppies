@@ -112,6 +112,7 @@ export default function PuppyDetails() {
             <div style={{ marginBottom: 6 }}>
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.primary }}>
                 {puppy.breed}
+                {puppy.breed === 'Canis Vulgaris' && <span style={{fontSize:10,fontWeight:600,color:C.text3,marginLeft:8,letterSpacing:'0.1em'}}>({t('canis_hint', l)})</span>}
               </span>
             </div>
             <h1 style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900, fontSize: isMobile ? 36 : 52, color: C.text, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 20 }}>
