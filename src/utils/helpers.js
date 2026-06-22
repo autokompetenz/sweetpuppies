@@ -6,7 +6,7 @@ export const formatEuro = (amount) => {
 export const BREEDS = [
   'Jack Russell Terrier', 'Labrador Retriever', 'Chihuahua',
   'Yorkshire Terrier', 'Berger Allemand', 'Bichon Maltais',
-  'Shi Tzu', 'Golden Retriever', 'Canis Vulgaris',
+  'Shih Tzu', 'Golden Retriever', 'Canis Vulgaris',
 ];
 
 export function timeAgo(date) {
