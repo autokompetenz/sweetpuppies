@@ -73,7 +73,7 @@ async function uploadFiles(files, folder = 'puppies') {
 
 const corsOptions = {
   origin: [
-    'https://animalconcept.com',
+    'https://animalconceptsrl.com',
     'https://animalconceptsrl.vercel.app',
     'http://localhost:5173',
     'http://localhost:3000',
