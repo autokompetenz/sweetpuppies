@@ -240,13 +240,14 @@ textarea.input-luxury { resize: vertical; min-height: 100px; line-height: 1.65; 
 
 .mail-btn {
   position:fixed; bottom:28px; right:28px; z-index:998;
-  width:56px; height:56px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
+  padding:14px 20px; border-radius:50px;
+  display:flex; align-items:center; gap:10px;
   cursor:pointer; transition:all 0.3s var(--ease);
 }
-.mail-btn:hover { transform:scale(1.12); }
+.mail-btn:hover { transform:scale(1.08); }
 @media (max-width:640px) {
-  .mail-btn { width:48px; height:48px; bottom:80px; right:14px; }
+  .mail-btn { padding:12px 16px; bottom:80px; right:14px; gap:8px; }
+  .mail-btn span { font-size:13px; }
 }
 .chat-notif {
   position:absolute; top:-3px; right:-3px; width:20px; height:20px;

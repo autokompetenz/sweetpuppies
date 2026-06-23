@@ -19,10 +19,11 @@ export default function MailButton() {
         boxShadow: `0 8px 32px ${isDark ? 'rgba(0,0,0,0.5)' : 'rgba(0,0,0,0.12)'}`,
       }}
     >
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={isDark ? '#e8e8e8' : '#1A1410'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={isDark ? '#e8e8e8' : '#1A1410'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
         <rect x="2" y="4" width="20" height="16" rx="2" />
         <path d="M22 4L12 13L2 4" />
       </svg>
+      <span style={{ fontSize: 14, fontWeight: 700, color: isDark ? '#e8e8e8' : '#1A1410', fontFamily: "'Outfit',sans-serif", letterSpacing: '0.02em' }}>Nous contacter</span>
     </a>
   );
 }
