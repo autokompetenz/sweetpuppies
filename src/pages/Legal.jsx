@@ -18,7 +18,7 @@ Dirigeants : — (voir registre BCE)
 Forme juridique : Société à responsabilité limitée (SRL)
 Activité NACEBEL : 01.480 (Élevage d'autres animaux)
 
-Contact : contact@animalconceptsrl.com
+Contact : nous contacter par email
 Hébergeur : Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA`,
     },
     {
@@ -27,7 +27,7 @@ Hébergeur : Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA`,
       sections: [
         {
           sub: '1. Responsable du traitement',
-          text: 'Le responsable du traitement des données est ANIMAL CONCEPT SRL, Rue Fût Voie 216, 4683 Oupeye, Belgique. Pour toute question concernant vos données, contactez-nous à contact@animalconceptsrl.com.',
+          text: 'Le responsable du traitement des données est ANIMAL CONCEPT SRL, Rue Fût Voie 216, 4683 Oupeye, Belgique. Pour toute question concernant vos données, contactez-nous par email.',
         },
         {
           sub: '2. Données collectées',
@@ -132,14 +132,14 @@ Bestuurders : — (zie KBO-register)
 Rechtsvorm : Besloten vennootschap (BV)
 NACEBEL-activiteit : 01.480 (Fokken van andere dieren)
 
-Contact : contact@animalconceptsrl.com
+Contact : neem contact op per e-mail
 Hosting : Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, VS`,
     },
     {
       id: 'privacy',
       title: 'Privacybeleid (AVG)',
       sections: [
-        { sub: '1. Verwerkingsverantwoordelijke', text: 'De verwerkingsverantwoordelijke is ANIMAL CONCEPT SRL, Rue Fût Voie 216, 4683 Oupeye, België. Neem contact met ons op via contact@animalconceptsrl.com voor vragen over uw gegevens.' },
+        { sub: '1. Verwerkingsverantwoordelijke', text: 'De verwerkingsverantwoordelijke is ANIMAL CONCEPT SRL, Rue Fût Voie 216, 4683 Oupeye, België. Neem per e-mail contact met ons op voor vragen over uw gegevens.' },
         { sub: '2. Verzamelde gegevens', text: 'We verzamelen alleen de gegevens die nodig zijn voor reserveringen: naam, e-mailadres, telefoonnummer en eventuele notities die u vrijwillig verstrekt. We verzamelen geen gevoelige gegevens.' },
         { sub: '3. Doeleinden van verwerking', text: 'Uw gegevens worden gebruikt voor: (a) het beheer en de opvolging van uw reservering; (b) communicatie over uw toekomstige metgezel; (c) naleving van wettelijke verplichtingen (fokregister, facturatie).' },
         { sub: '4. Rechtsgrond', text: 'De verwerking is gebaseerd op de uitvoering van een overeenkomst (reservering) en wettelijke verplichtingen. Toestemming wordt gevraagd voor niet-essentiële cookies via onze banner.' },
@@ -183,14 +183,14 @@ Directors : — (see BCE register)
 Legal form : Private Limited Liability Company
 NACEBEL activity : 01.480 (Raising of other animals)
 
-Contact : contact@animalconceptsrl.com
+Contact : contact us by email
 Hosting : Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA`,
     },
     {
       id: 'privacy',
       title: 'Privacy Policy (GDPR)',
       sections: [
-        { sub: '1. Data Controller', text: 'The data controller is ANIMAL CONCEPT SRL, Rue Fût Voie 216, 4683 Oupeye, Belgium. For any questions regarding your data, contact us at contact@animalconceptsrl.com.' },
+        { sub: '1. Data Controller', text: 'The data controller is ANIMAL CONCEPT SRL, Rue Fût Voie 216, 4683 Oupeye, Belgium. For any questions regarding your data, contact us by email.' },
         { sub: '2. Data Collected', text: 'We only collect data necessary for reservation management: name, email address, phone number, and any notes you voluntarily provide. We do not collect any sensitive data.' },
         { sub: '3. Purposes of Processing', text: 'Your data is used for: (a) managing and tracking your reservation; (b) communication regarding your future companion; (c) compliance with our legal obligations (breeding register, invoicing).' },
         { sub: '4. Legal Basis', text: 'Processing is based on contract execution (reservation) and legal obligations. Consent is obtained for non-essential cookies via our banner.' },
