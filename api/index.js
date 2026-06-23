@@ -137,7 +137,7 @@ app.get('/api/puppies', async (req, res) => {
     const { breed, sex, status, featured, search, minPrice, maxPrice, limit, page = 1 } = req.query;
     const take = limit ? parseInt(limit) : undefined;
     const skip = page ? (parseInt(page) - 1) * (take || 12) : 0;
-    const where = { isActive: true };
+    const where = { isActive: true, status: 'available' };
 
     if (breed) where.breed = { contains: breed, mode: 'insensitive' };
     if (sex) where.sex = sex;
@@ -167,7 +167,7 @@ app.get('/api/puppies/breeds', async (req, res) => {
   try {
     const breeds = await prisma.puppy.groupBy({
       by: ['breed'],
-      where: { isActive: true },
+      where: { isActive: true, status: 'available' },
       _count: { breed: true }
     });
     res.json({ breeds: breeds.map(b => ({ breed: b.breed, count: b._count.breed })) });
@@ -455,11 +455,13 @@ app.post('/api/reservations', async (req, res) => {
     // Send confirmation emails (sequential, shares 1 pooled connection)
     try {
       await sendReservationConfirmation({ email: guestEmail, name: guestName, reservation, puppy });
+      console.log('Confirmation email sent to', guestEmail);
     } catch (err) {
       console.error('Confirmation email error:', err.message);
     }
     try {
       await sendAdminNotification({ reservation, puppy });
+      console.log('Admin notification sent');
     } catch (err) {
       console.error('Admin notification error:', err.message);
     }
