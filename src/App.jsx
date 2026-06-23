@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ClientBottomNav from './components/ClientBottomNav';
 import MailButton from './components/MailButton';
+import DeliveryModal from './components/DeliveryModal';
 
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -40,6 +41,7 @@ function PublicLayout({ children }) {
       <Footer />
       <ClientBottomNav />
       <MailButton />
+      <DeliveryModal />
       <Toast />
     </>
   );
